@@ -151,6 +151,7 @@ export default {
       if (newVal === '') {
         return this.showAllBeers();
       }
+      this.beers = this.beersCache;
       this.showSearchResults(newVal);
     }, 500),
   },
@@ -214,11 +215,15 @@ export default {
     showSearchResults(query) {
       const beersMatchingSearchQuery = [];
       _.map(this.beers, (beer) => {
-        if (beer.name.toLowerCase().includes(query.toLowerCase())) {
-          beersMatchingSearchQuery.push(beer);
+        if (query) {
+          if (beer.name.toLowerCase().includes(query.toLowerCase())) {
+            beersMatchingSearchQuery.push(beer);
+          }
         }
       });
-      this.beers = beersMatchingSearchQuery;
+      if (query) {
+        this.beers = beersMatchingSearchQuery;
+      }
     },
   },
 };
