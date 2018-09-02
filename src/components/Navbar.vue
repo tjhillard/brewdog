@@ -20,7 +20,6 @@
             prepend-icon="search"
             solo
             flat
-            clearable
             color="dark"
             class="nav-search"
             v-model="searchQuery"
