@@ -143,13 +143,9 @@
 
 <script>
 import * as _ from 'lodash';
-import GalleryOptions from '@/components/gallery/GalleryOptions.vue';
 
 export default {
   name: 'BeerGallery',
-  components: {
-    GalleryOptions,
-  },
   data() {
     return {
       isLoading: null,

@@ -3,7 +3,8 @@
     <v-layout wrap>
       <v-flex md10>
         <v-toolbar flat color="white">
-          <v-toolbar-side-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-toolbar-side-icon>
+          <v-toolbar-side-icon class="hidden-md-and-up" @click="drawer = !drawer">
+          </v-toolbar-side-icon>
           <router-link tag="v-toolbar-title" to="/" class="link">Brewdog</router-link>
           <v-spacer></v-spacer>
           <v-toolbar-items class="hidden-sm-and-down">
