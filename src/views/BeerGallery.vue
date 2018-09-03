@@ -1,7 +1,7 @@
 <template>
   <div class="gallery-wrapper">
     <v-layout fill-height>
-      <v-flex xs10>
+      <v-flex md10 sm12>
         <v-flex xs12 class="gallery-body">
           <!-- Error if API error -->
           <v-alert
@@ -11,8 +11,41 @@
           >
             There was an error fetching the beers. {{ error.message }}.
           </v-alert>
+          <!-- sort options on mobile -->
+          <v-container class="hidden-lg-and-up">
+            <v-layout md12 fluid>
+              <v-flex xs1 style="margin-top: 10px;">
+                <v-icon @click="reverseSort">autorenew</v-icon>
+              </v-flex>
+              <v-flex>
+                <div style="width: 95%;">
+                  <v-select
+                    :items="sortByMethods"
+                    :label="sortBy"
+                    v-model="sortBy"
+                    flat
+                    solo
+                  ></v-select>
+                </div>
+              </v-flex>
+            </v-layout>
+            <v-layout>
+              <div style="width: 95%;">
+                <div v-if="isShowingOnlySavedBeers">
+                  <v-btn block color="primary" @click="showAllBeers()">
+                    Show All Beers
+                  </v-btn>
+                </div>
+                <div v-else>
+                  <v-btn block color="success" @click="showOnlySavedBeers()">
+                    Show Only Saved
+                  </v-btn>
+                </div>
+              </div>
+            </v-layout>
+          </v-container>
           <!-- Beer grid list -->
-          <v-container fluid grid-list-md>
+          <v-container fluid grid-list-xs>
             <v-layout wrap justify-center>
                 <v-card v-for="beer in beers"
                   :key="beer.id"
@@ -21,8 +54,8 @@
                   class="beer-item"
                 >
                   <v-layout row>
-                    <v-flex xs10>
-                      <h3 class="text-sm-left">{{ beer.name }}</h3>
+                    <v-flex md10>
+                      <h3 class="text-sm-left" style="float: left;">{{ beer.name }}</h3>
                     </v-flex>
                     <v-flex xs2>
                       <div v-if="savedBeers.includes(beer.id)">
@@ -73,33 +106,35 @@
           </v-container>
         </v-flex>
       </v-flex>
-      <v-flex xs2 class="gallery-sidebar-wrapper">
+      <!-- sidebar -->
+      <!-- only shows md and down -->
+      <v-flex xs2 class="gallery-sidebar-wrapper hidden-md-and-down">
         <div class="sidebar-filters-content">
           <h3 class="text-sm-left">
-            Sort by
-            <v-icon style="float: right; margin-right: 10px;"
-              @click="reverseSort"
-            >
-              autorenew
-            </v-icon>
-          </h3>
-          <v-select
-            :items="sortByMethods"
-            :label="sortBy"
-            v-model="sortBy"
-            solo
-            flat
-          ></v-select>
-          <div v-if="isShowingOnlySavedBeers">
-            <v-btn color="primary" center class="view-saved-button" @click="showAllBeers()">
-              Show All Beers
-            </v-btn>
-          </div>
-          <div v-else>
-            <v-btn color="success" center class="view-saved-button" @click="showOnlySavedBeers()">
-              Show Only Saved
-            </v-btn>
-          </div>
+      Sort by
+      <v-icon style="float: right; margin-right: 10px;"
+        @click="reverseSort"
+      >
+        autorenew
+      </v-icon>
+    </h3>
+    <v-select
+      :items="sortByMethods"
+      :label="sortBy"
+      v-model="sortBy"
+      solo
+      flat
+    ></v-select>
+    <div v-if="isShowingOnlySavedBeers">
+      <v-btn color="primary" center class="view-saved-button" @click="showAllBeers()">
+        Show All Beers
+      </v-btn>
+    </div>
+    <div v-else>
+      <v-btn color="success" center class="view-saved-button" @click="showOnlySavedBeers()">
+        Show Only Saved
+      </v-btn>
+    </div>
         </div>
       </v-flex>
     </v-layout>
@@ -108,9 +143,13 @@
 
 <script>
 import * as _ from 'lodash';
+import GalleryOptions from '@/components/gallery/GalleryOptions.vue';
 
 export default {
   name: 'BeerGallery',
+  components: {
+    GalleryOptions,
+  },
   data() {
     return {
       isLoading: null,

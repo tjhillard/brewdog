@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-wrapper">
-    <v-layout row>
-      <v-flex xs10>
+    <v-layout>
+      <v-flex md10>
         <v-toolbar flat color="white">
           <router-link tag="v-toolbar-title" to="/" class="link">Brewdog</router-link>
           <v-spacer></v-spacer>
@@ -13,7 +13,7 @@
           </v-toolbar-items>
         </v-toolbar>
       </v-flex>
-      <v-flex xs2 class="nav-search-wrapper">
+      <v-flex md2 class="nav-search-wrapper">
         <v-text-field
             label="Solo"
             placeholder="search"
