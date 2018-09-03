@@ -121,6 +121,11 @@ export default {
     padding-left: 10px;
   }
 }
+@media (max-width: 959px) {
+  .nav-search {
+    margin-left: 9px;
+  }
+}
 
 @media (max-width: 959px) {
   .v-text-field {

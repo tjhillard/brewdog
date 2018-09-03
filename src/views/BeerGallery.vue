@@ -38,7 +38,7 @@
                 </div>
                 <div v-else>
                   <v-btn block color="success" @click="showOnlySavedBeers()">
-                    Show Only Saved
+                    Show Only Saved ({{ savedBeers.length }})
                   </v-btn>
                 </div>
               </div>
@@ -132,7 +132,7 @@
     </div>
     <div v-else>
       <v-btn color="success" center class="view-saved-button" @click="showOnlySavedBeers()">
-        Show Only Saved
+        Show Only Saved ({{ savedBeers.length }})
       </v-btn>
     </div>
         </div>
@@ -285,9 +285,13 @@ h3 {
 }
 .beer-item {
   border-top: 1px solid black;
-  margin-right: 20px;
   padding-top: 8px;
   border-radius: 0;
+}
+@media (min-width: 600px) {
+  .beer-item {
+    margin-right: 20px;
+  }
 }
 .beer-stat {
   font-weight: bold;
