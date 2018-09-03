@@ -18,7 +18,7 @@
                 <v-icon @click="reverseSort">autorenew</v-icon>
               </v-flex>
               <v-flex>
-                <div style="width: 95%;">
+                <div style="width: 100%;">
                   <v-select
                     :items="sortByMethods"
                     :label="sortBy"
@@ -30,7 +30,7 @@
               </v-flex>
             </v-layout>
             <v-layout>
-              <div style="width: 95%;">
+              <div style="width: 100%;">
                 <div v-if="isShowingOnlySavedBeers">
                   <v-btn block color="primary" @click="showAllBeers()">
                     Show All Beers
