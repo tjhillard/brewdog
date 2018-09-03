@@ -67,7 +67,7 @@
                     </v-flex>
                   </v-layout>
                   <v-layout row>
-                    <p class="text-sm-left" style="margin-left: 15px;">{{ beer.tagline }}</p>
+                    <p class="text-sm-left" style="margin-left: 10px;">{{ beer.tagline }}</p>
                   </v-layout>
                   <v-layout row>
                     <v-flex xs2>
